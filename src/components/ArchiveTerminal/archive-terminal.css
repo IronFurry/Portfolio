@@ -1,0 +1,247 @@
+/* ==========================================================================
+   ARCHIVE TERMINAL — MACOS STYLE MINIATURE SHELL
+   ========================================================================== */
+
+.archive-terminal-root {
+  position: fixed;
+  bottom: 24px;
+  right: 32px;
+  left: auto;
+  transform: none;
+  z-index: 1000;
+  width: 460px;
+  max-width: calc(100vw - 48px);
+  background: rgba(12, 16, 24, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.65), 0 0 1px rgba(255, 255, 255, 0.2);
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #e2e8f0;
+  opacity: 0.82;
+  transition: opacity 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: text;
+  cursor: text;
+  overflow: hidden;
+}
+
+.archive-terminal-root:hover,
+.archive-terminal-root:focus-within,
+.archive-terminal-root.terminal-focused {
+  opacity: 1;
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.75), 0 0 16px rgba(56, 189, 248, 0.15);
+}
+
+/* macOS Header Bar */
+.mac-terminal-header {
+  height: 28px;
+  background: rgba(22, 28, 38, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  position: relative;
+  user-select: none;
+  cursor: grab;
+}
+
+.mac-terminal-header:active,
+.archive-terminal-root.is-dragging .mac-terminal-header {
+  cursor: grabbing;
+}
+
+.mac-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.mac-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.88;
+  transition: opacity 0.2s ease;
+}
+
+.archive-terminal-root:hover .mac-dot {
+  opacity: 1;
+}
+
+.dot-close {
+  background-color: #ff5f56;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.dot-minimize {
+  background-color: #ffbd2e;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.dot-expand {
+  background-color: #27c93f;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+}
+
+.mac-terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: #94a3b8;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* Terminal Body */
+.mac-terminal-body {
+  padding: 12px 16px;
+}
+
+/* Output History Scroll Box */
+.terminal-output-container {
+  max-height: 140px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.25) transparent;
+}
+
+.terminal-output-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.terminal-output-container::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 2px;
+}
+
+.terminal-line {
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.line-user {
+  color: #94a3b8;
+}
+
+.line-system {
+  color: #cbd5e1;
+}
+
+.line-response {
+  color: #38bdf8;
+  font-weight: 500;
+}
+
+.line-error {
+  color: #f87171;
+}
+
+/* Input Row */
+.terminal-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.terminal-prompt {
+  color: #38bdf8;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 13px;
+}
+
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.terminal-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f8fafc;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 0;
+  margin: 0;
+  caret-color: #38bdf8;
+}
+
+/* Custom Blinking Cyan Cursor */
+.terminal-cursor {
+  position: absolute;
+  color: #38bdf8;
+  font-weight: 700;
+  pointer-events: none;
+  font-size: 13px;
+  margin-left: 2px;
+}
+
+.terminal-cursor.blinking {
+  animation: cursorBlink 1s infinite steps(2);
+}
+
+.terminal-cursor.idle {
+  opacity: 0.4;
+}
+
+@keyframes cursorBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .archive-terminal-root {
+    right: 16px;
+    bottom: 16px;
+    width: calc(100vw - 32px);
+    font-size: 12px;
+  }
+
+  .terminal-prompt {
+    font-size: 11px;
+  }
+
+  .terminal-input {
+    font-size: 12px;
+  }
+
+  .terminal-output-container {
+    max-height: 100px;
+  }
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .archive-terminal-root {
+    transition: none;
+  }
+  .terminal-cursor.blinking {
+    animation: none;
+    opacity: 1;
+  }
+}

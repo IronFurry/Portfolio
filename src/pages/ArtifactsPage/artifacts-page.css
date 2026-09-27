@@ -1,0 +1,115 @@
+/* ==========================================================================
+   ARTIFACTS PAGE — DEDICATED ARTIFACT ARCHIVE PAGE VIEW
+   ========================================================================== */
+
+.artifacts-page-root {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+  background-color: #030405;
+  color: #ffffff;
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky top header */
+.artifacts-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  background: rgba(8, 12, 18, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+.artifacts-header-badge {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.artifacts-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.artifacts-header-btn,
+.artifacts-header-back-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.artifacts-header-btn:hover {
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(56, 189, 248, 0.45);
+  color: #38bdf8;
+}
+
+.artifacts-header-back-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.artifacts-header-btn.audio-btn:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+}
+
+.hud-square {
+  color: #38bdf8;
+}
+
+.artifacts-page-root .artifacts-section-root {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+@media (max-width: 760px) {
+  .artifacts-page-header {
+    padding: 14px 16px;
+  }
+
+  .artifacts-header-badge {
+    font-size: 9px;
+    letter-spacing: 0.14em;
+  }
+
+  .artifacts-header-actions {
+    gap: 6px;
+  }
+
+  .artifacts-header-btn,
+  .artifacts-header-back-btn {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+
+  .artifacts-header-back-btn span {
+    display: none;
+  }
+}

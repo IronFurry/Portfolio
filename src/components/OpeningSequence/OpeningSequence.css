@@ -1,0 +1,646 @@
+/* ==========================================================================
+   OPENING SEQUENCE — CINEMATIC SCI-FI INVITATION CSS
+   ========================================================================== */
+
+/* --- ROOT CONTAINER & BACKGROUND --- */
+.opening-sequence-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  height: 100svh;
+  background-color: #030405;
+  color: #94a3b8;
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- BACKGROUND FX LAYERS --- */
+.bg-fx-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-fx-container.is-flickering {
+  opacity: 0.82;
+  filter: brightness(1.3) contrast(1.1) hue-rotate(5deg);
+}
+
+/* Radial Edge Vignette */
+.vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 35%,
+    rgba(3, 4, 5, 0.75) 70%,
+    rgba(3, 4, 5, 0.98) 100%
+  );
+  z-index: 2;
+}
+
+/* Film Grain / Noise Pattern */
+.film-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+}
+
+/* CRT Scanlines & Subtle Cathode Sweep */
+.scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.35) 50%,
+    rgba(0, 0, 0, 0.35)
+  );
+  background-size: 100% 4px;
+  opacity: 0.25;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(56, 189, 248, 0.03),
+    transparent
+  );
+  animation: scanlineSweep 8s linear infinite;
+}
+
+@keyframes scanlineSweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(500%); }
+}
+
+/* Telemetry Grid Overlay */
+.telemetry-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.03;
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+}
+
+/* HUD Corner Crosshairs */
+.hud-corner {
+  position: absolute;
+  font-size: 14px;
+  color: rgba(148, 163, 184, 0.3);
+  font-family: monospace;
+  z-index: 10;
+  pointer-events: none;
+}
+.hud-corner.top-left { top: 24px; left: 28px; }
+.hud-corner.top-right { top: 24px; right: 28px; }
+.hud-corner.bottom-left { bottom: 24px; left: 28px; }
+.hud-corner.bottom-right { bottom: 24px; right: 28px; }
+
+/* HUD Top Header Tag */
+.hud-top-meta {
+  position: absolute;
+  top: 24px;
+  left: 48px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: rgba(148, 163, 184, 0.4);
+  z-index: 10;
+  display: flex;
+  gap: 16px;
+}
+.hud-top-meta .meta-status {
+  color: rgba(56, 189, 248, 0.5);
+}
+
+/* HUD Controls Top Right */
+.hud-controls-topright {
+  position: absolute;
+  top: 20px;
+  right: 44px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 20;
+}
+
+.hud-btn {
+  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #94a3b8;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  border-radius: 2px;
+}
+
+.hud-btn:hover {
+  background: rgba(148, 163, 184, 0.08);
+  border-color: rgba(226, 232, 240, 0.4);
+  color: #e2e8f0;
+}
+
+.hud-btn:active {
+  transform: scale(0.97);
+}
+
+/* VIEWPORT CONTAINER */
+.sequence-viewport {
+  position: relative;
+  z-index: 15;
+  width: 100%;
+  max-width: 860px;
+  padding: 0 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 380px;
+}
+
+/* --- SCENE 1: BOOT SEQUENCE --- */
+.boot-sequence-wrapper {
+  width: 100%;
+  text-align: left;
+}
+
+.terminal-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  color: #94a3b8;
+}
+
+.terminal-line.completed .line-prefix {
+  color: #cbd5e1;
+}
+
+.line-status {
+  margin-left: 20px;
+  color: #38bdf8;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.ok-pulse {
+  animation: okGlow 0.3s ease-out;
+}
+
+@keyframes okGlow {
+  0% { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  margin-left: 6px;
+  color: #38bdf8;
+}
+
+.blinking-cursor {
+  animation: cursorBlink 0.9s infinite step-start;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* --- SCENE 2: IDENTITY REVEAL --- */
+.identity-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.identity-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.protocol-header {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.status-indicator {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.status-text {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+.searching-text {
+  color: #94a3b8;
+}
+
+.found-text {
+  color: #38bdf8;
+  text-shadow: 0 0 12px rgba(56, 189, 248, 0.35);
+}
+
+.identity-name-box {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.cinematic-name {
+  font-family: 'Cinzel', 'Space Grotesk', serif;
+  font-size: 52px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: #f8fafc;
+  margin: 0;
+  text-shadow: 0 0 35px rgba(248, 250, 252, 0.15);
+}
+
+.name-underline {
+  height: 1px;
+  width: 140px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.6),
+    transparent
+  );
+}
+
+/* --- SCENE 3: ARCHIVE INVITATION --- */
+.invitation-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invitation-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 640px;
+  width: 100%;
+}
+
+.invitation-meta-top {
+  margin-bottom: 12px;
+}
+
+.archive-badge {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: #64748b;
+  border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+  padding-bottom: 4px;
+}
+
+.invitation-title {
+  font-family: 'Cinzel', 'Space Grotesk', serif;
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #f8fafc;
+  margin: 8px 0 20px 0;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+}
+
+.invitation-status-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #94a3b8;
+  margin-bottom: 24px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.status-label {
+  color: #64748b;
+}
+
+.highlight-cyan {
+  color: #38bdf8;
+}
+
+.highlight-green {
+  color: #34d399;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.online-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #34d399;
+  box-shadow: 0 0 8px #34d399;
+  display: inline-block;
+}
+
+.status-divider {
+  color: rgba(148, 163, 184, 0.25);
+}
+
+.invitation-description {
+  font-family: 'Space Grotesk', 'Share Tech Mono', sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  color: #cbd5e1;
+  max-width: 480px;
+  margin: 0 0 32px 0;
+  font-weight: 300;
+}
+
+.invitation-divider {
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(148, 163, 184, 0.25),
+    transparent
+  );
+  margin-bottom: 36px;
+}
+
+.invitation-prompt-wrapper {
+  width: 100%;
+}
+
+/* --- ENTER PROMPT & STATUS STATES --- */
+.enter-prompt-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+}
+
+.prompt-interactive-area {
+  cursor: pointer;
+  padding: 12px 24px;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(3, 4, 5, 0.6);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.prompt-interactive-area:hover,
+.prompt-interactive-area:focus {
+  border-color: rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.04);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.08);
+}
+
+.desktop-prompt {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breathing-text {
+  animation: breathingOpacity 3s ease-in-out infinite;
+}
+
+@keyframes breathingOpacity {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.prompt-symbol {
+  color: #38bdf8;
+}
+
+.mobile-prompt-hint {
+  display: none;
+}
+
+.grant-status-line {
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grant-status-line.highlight {
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.grant-status-line.welcome-text {
+  color: #f8fafc;
+  font-weight: 600;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.status-loader {
+  animation: dots 1s infinite step-start;
+}
+
+/* --- SCENE 4: ENTERING ARCHIVE HANDOFF SCREEN --- */
+.entering-archive-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.entering-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.entering-text {
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  color: #e2e8f0;
+}
+
+.entering-symbol {
+  color: #38bdf8;
+  font-size: 16px;
+}
+
+.entering-progress-bar {
+  width: 180px;
+  height: 2px;
+  background: rgba(148, 163, 184, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.entering-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: #38bdf8;
+  transform-origin: left;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+/* --- HUD BOTTOM FOOTER METADATA --- */
+.hud-bottom-meta {
+  position: absolute;
+  bottom: 24px;
+  left: 48px;
+  right: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgba(148, 163, 184, 0.35);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* --- RESPONSIVE MOBILE STYLES --- */
+@media (max-width: 768px) {
+  .hud-top-meta {
+    left: 24px;
+    font-size: 10px;
+  }
+
+  .hud-controls-topright {
+    top: 16px;
+    right: 20px;
+  }
+
+  .hud-bottom-meta {
+    left: 24px;
+    right: 24px;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cinematic-name {
+    font-size: 34px;
+    letter-spacing: 0.16em;
+  }
+
+  .invitation-title {
+    font-size: 30px;
+    letter-spacing: 0.14em;
+  }
+
+  .invitation-description {
+    font-size: 13px;
+    padding: 0 16px;
+  }
+
+  .invitation-status-grid {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .status-divider {
+    display: none;
+  }
+
+  .desktop-prompt {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+  }
+
+  .mobile-prompt-hint {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .mobile-tap-badge {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #38bdf8;
+  }
+}
+
+/* --- ACCESSIBILITY / PREFERS-REDUCED-MOTION --- */
+@media (prefers-reduced-motion: reduce) {
+  .scanlines::after,
+  .breathing-text,
+  .blinking-cursor,
+  .status-loader {
+    animation: none !important;
+  }
+  
+  .bg-fx-container.is-flickering {
+    opacity: 1 !important;
+    filter: none !important;
+  }
+}

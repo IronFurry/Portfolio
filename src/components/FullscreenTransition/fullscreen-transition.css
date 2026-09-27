@@ -1,0 +1,74 @@
+/* ==========================================================================
+   FULLSCREEN CINEMATIC TRANSITION OVERLAY
+   ========================================================================== */
+
+.fullscreen-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #030405;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  color: #ffffff;
+}
+
+.transition-center-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+}
+
+.transition-square-pulse {
+  color: #38bdf8;
+  font-size: 20px;
+  animation: pulseSquare 0.8s infinite ease-in-out;
+}
+
+.transition-main-message {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.transition-bar-track {
+  width: 80%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.transition-bar-fill {
+  width: 100%;
+  height: 100%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px #38bdf8;
+  animation: fillAnim 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.transition-subtext {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  color: #94a3b8;
+}
+
+@keyframes fillAnim {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes pulseSquare {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}

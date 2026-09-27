@@ -1,0 +1,304 @@
+/* ==========================================================================
+   ABOUT PAGE — DEDICATED IDENTITY RECORD PAGE VIEW
+   ========================================================================== */
+
+.about-page-root {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #030405;
+  color: #ffffff;
+  font-family: 'Share Tech Mono', 'JetBrains Mono', monospace;
+  position: relative;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px;
+  background: rgba(8, 12, 18, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-badge {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-nav-btn,
+.header-back-btn {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  padding: 8px 16px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.header-nav-btn:hover,
+.header-back-btn:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+}
+
+.about-page-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 48px;
+}
+
+.about-container {
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* Left Column — ASCII Portrait */
+.about-left-col {
+  flex: 1.4;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.identity-scan-header {
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  color: #ffffff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ascii-portrait-container {
+  width: 75%;
+  overflow-x: auto;
+  background: rgba(6, 9, 14, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: 16px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.2) transparent;
+}
+
+.ascii-portrait {
+  white-space: pre;
+  font-family: monospace;
+  font-size: 6px;
+  line-height: 1.0;
+  color: #e2e8f0;
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.ascii-metadata {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #94a3b8;
+  padding-top: 8px;
+}
+
+.meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-dots {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.meta-val {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.meta-val.highlight {
+  color: #38bdf8;
+}
+
+/* Right Column — Personal Record */
+.about-right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.person-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.person-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.person-role {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.person-bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #cbd5e1;
+  letter-spacing: 0.04em;
+}
+
+.person-bio p {
+  margin: 0;
+}
+
+.bio-bullet-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(56, 189, 248, 0.5);
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+/* Current State Metadata Box */
+.current-state-box {
+  margin-top: 12px;
+  background: rgba(6, 9, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.state-header {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-divider {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.state-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+}
+
+.state-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.state-key {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.state-val {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Responsive Rules */
+@media (max-width: 1024px) {
+  .about-header-bar {
+    padding: 16px 24px;
+  }
+
+  .about-page-main {
+    padding: 40px 24px;
+  }
+
+  .about-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .about-left-col,
+  .about-right-col {
+    flex: none;
+    width: 100%;
+  }
+
+  .ascii-portrait {
+    font-size: 4.8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-header-bar {
+    padding: 12px 16px;
+  }
+
+  .person-name {
+    font-size: 32px;
+  }
+
+  .ascii-portrait {
+    font-size: 3.8px;
+  }
+}
